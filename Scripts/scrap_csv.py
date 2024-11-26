@@ -1,7 +1,7 @@
 import os
+import csv
 import requests
 from bs4 import BeautifulSoup
-import csv
 
 class CSVDownloader:
     def __init__(self, base_url, pasta_download, arquivo_unido):
@@ -48,7 +48,8 @@ class CSVDownloader:
                         cabecalho_escrito = True
                     for linha in reader:
                         writer.writerow(linha)
-                print(f'Processado: {arquivo}')
+                os.remove(arquivo)  # Deletando o arquivo de input após o processamento
+                print(f'Arquivo deletado: {arquivo}')
 
     def run(self):
         soup = self.fetch_page()
